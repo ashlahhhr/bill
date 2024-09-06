@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev/db"
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String
+  email    String @unique
+  password String
+  akuns    Akun[]
+}
+
+model Akun {
+  id    Int    @id @default(autoincrement())
+  nama  String
+  saldo Float  @default(0)
+
+  UserID Int
+  user   User @relation(fields: [UserID], references: [id])
+
+  bills Bill[]
+}
+
+model Bill {
+  id      Int      @id @default(autoincrement())
+  nama    String
+  tanggal DateTime @default(now())
+
+  AkunID     Int
+  akun       Akun     @relation(fields: [AkunID], references: [id])
+  KategoriID Int
+  kategori   Kategori @relation(fields: [KategoriID], references: [id])
+
+  items Item[]
+  total Total?
+}
+
+model Kategori {
+  id    Int    @id @default(autoincrement())
+  nama  String
+  bills Bill[]
+}
+
+model Item {
+  id           Int    @id @default(autoincrement())
+  nama         String
+  harga        Float
+  jumlah_item  Int
+  jumlah_harga Float  @default(0)
+
+  BillID Int
+  bill   Bill @relation(fields: [BillID], references: [id])
+}
+
+model Total {
+  id                Int   @id @default(autoincrement())
+  total_harga       Float
+  discount          Float @default(0)
+  total_harga_final Float @default(0)
+
+  BillID Int  @unique
+  bill   Bill @relation(fields: [BillID], references: [id])
+}
