@@ -7,46 +7,46 @@ datasource db {
   url      = "file:./dev/db"
 }
 
-model User {
+model user {
   id       Int    @id @default(autoincrement())
   username String
   email    String @unique
   password String
-  akuns    Akun[]
+  akuns    akun[]
 }
 
-model Akun {
+model akun {
   id    Int    @id @default(autoincrement())
   nama  String
   saldo Float  @default(0)
 
   UserID Int
-  user   User @relation(fields: [UserID], references: [id])
+  user   user @relation(fields: [UserID], references: [id])
 
-  bills Bill[]
+  bills bill[]
 }
 
-model Bill {
+model bill {
   id      Int      @id @default(autoincrement())
   nama    String
   tanggal DateTime @default(now())
 
   AkunID     Int
-  akun       Akun     @relation(fields: [AkunID], references: [id])
+  akun       akun     @relation(fields: [AkunID], references: [id])
   KategoriID Int
-  kategori   Kategori @relation(fields: [KategoriID], references: [id])
+  kategori   kategori @relation(fields: [KategoriID], references: [id])
 
-  items Item[]
-  total Total?
+  items item[]
+  total total?
 }
 
-model Kategori {
+model kategori {
   id    Int    @id @default(autoincrement())
   nama  String
-  bills Bill[]
+  bills bill[]
 }
 
-model Item {
+model item {
   id           Int    @id @default(autoincrement())
   nama         String
   harga        Float
@@ -54,15 +54,15 @@ model Item {
   jumlah_harga Float  @default(0)
 
   BillID Int
-  bill   Bill @relation(fields: [BillID], references: [id])
+  bill   bill @relation(fields: [BillID], references: [id])
 }
 
-model Total {
+model total {
   id                Int   @id @default(autoincrement())
   total_harga       Float
   discount          Float @default(0)
   total_harga_final Float @default(0)
 
   BillID Int  @unique
-  bill   Bill @relation(fields: [BillID], references: [id])
+  bill   bill @relation(fields: [BillID], references: [id])
 }

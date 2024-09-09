@@ -1,0 +1,4 @@
+GET http://localhost:3000/api/v1/products 
+
+###create new product
+POST http://localhost:3000/api/v1/products
