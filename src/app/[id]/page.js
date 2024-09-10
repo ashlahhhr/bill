@@ -6,14 +6,14 @@ async function getUser(userId) {
 
 export default async function Page({ params }) {
   const userId = params.id;
-  const { data } = await getUser(userId);
-  console.log(data);
+  const userData = await getUser(userId);
 
   return (
     <main>
-      {/* <div>{data.id}</div>
-      <div>{data.username}</div>
-      <div>{data.email}</div> */}
+      <p>Detail user:</p>
+      <div>{userData?.data?.id}</div>
+      <div>{userData?.data?.username}</div>
+      <div>{userData?.data?.email}</div>
     </main>
   );
 }
