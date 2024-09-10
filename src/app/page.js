@@ -9,12 +9,12 @@ async function getUsers() {
 }
 
 export default async function Page() {
-  const { data } = await getUsers();
+  const usersData = await getUsers();
 
   return (
     <main>
       <div>
-        {data.map((user) => {
+        {usersData?.data?.map((user) => {
           return (
             <div key={user.id}>
               <Link href={`/users/${user.id}`}>{user.username}</Link>
