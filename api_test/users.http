@@ -1,25 +1,23 @@
 GET http://localhost:3000/api/v1/users
 
 ###dapetin data user berdasarkan dynamic value
-GET http://localhost:3000/api/v1/users/2
+GET http://localhost:3000/api/v1/users/1
 
 ###create new user
 POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "username": "buyung",
-    "email": "buyung@email.com",
+    "username": "unyil",
+    "email": "unyil@email.com",
     "password": "123"
 }
 
 ###update user
-PATCH http://localhost:3000/api/v1/users/3
+PATCH http://localhost:3000/api/v1/users/1
 Content-Type: application/json
 
 {
-    "username": "bujanggggggggg",
-    "email": "buyung@email.com",
     "password": "128739712"
 }
 

@@ -1,5 +1,4 @@
 import { prisma } from "@/utils/prisma";
-import { UNSTABLE_REVALIDATE_RENAME_ERROR } from "next/dist/lib/constants";
 
 export async function GET(request, { params }) {
   const userId = Number(params.id);
@@ -8,7 +7,7 @@ export async function GET(request, { params }) {
       id: userId,
     },
   });
-  return Response.json({ message: "ini nampilin satu user", data: user });
+  return Response.json({ message: "ini nampilin user sesuai id", data: user });
 }
 
 export async function PATCH(request, { params }) {
