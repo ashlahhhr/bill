@@ -2,17 +2,27 @@ import { prisma } from "@/utils/prisma";
 import bcrypt from "bcrypt";
 
 export async function POST(req) {
-  const { username, email, password } = await req.json();
+  try {
+    const { username, email, password } = await req.json();
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Lanjutkan dengan create user
 
-  const newUser = await prisma.user.create({
-    data: {
-      username,
-      email,
-      password: hashedPassword,
-    },
-  });
+    const newUser = await prisma.user.create({
+      data: {
+        username,
+        email,
+        password: hashedPassword,
+      },
+    });
 
-  return Response.json({ data: newUser }, { status: 201 });
+    return Response.json(
+      { message: "user dah ditambah" },
+      { data: newUser },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Hashing error:", error);
+    // Handle error appropriately
+  }
 }
