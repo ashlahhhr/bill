@@ -1,5 +1,6 @@
 import { prisma } from "@/utils/prisma";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function POST(req) {
   const { email, password } = await req.json();
@@ -15,18 +16,34 @@ export async function POST(req) {
   });
 
   if (!user) {
-    return Response.json({ message: "Invalid Credential" }, { status: 404 });
+    return Response.json({ message: "Invalid Credential" }, { status: 422 });
   }
 
   const isPasswordMatch = await bcrypt.compare(password, user.password);
 
   if (!isPasswordMatch) {
-    return Response.json({ message: "Invalid Credential" }, { status: 400 });
+    return Response.json({ message: "Invalid Credential" }, { status: 422 });
   }
 
   // authorization
-  // ....
-  // ....
+  // ! session id
+  const session = await prisma.session.create({
+    data: {
+      userId: user.id,
+    },
+  });
 
-  return Response.json({ message: "Login successs!" });
+  //token-based(dasar, tidak untuk prod)
+  // const payload = {
+  //   id: user.id,
+  //   name: user.username,
+  //   email: user.email,
+  // };
+
+  // const token = jwt.sign(payload, "secret123", { expiresIn: "7d" });
+
+  return Response.json(
+    { message: "Login successs!", sessioId: session.id },
+    { status: 200 }
+  );
 }

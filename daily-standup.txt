@@ -1,0 +1,25 @@
+Proghive - Day 15
+
+🚀 WINS
+nyoba bikin API dengan dynamic value
+baca-baca buat tau bedanya app router dan page router.
+
+⭐ CHALLENGES
+jadi tau kalo route.js ga bisa barengan sama page.js
+di app/users/[id]page.js, nyoba ga manggil api pake fetch tapi lgsg manggil dari prisma
+
+🔴 BLOCKERS
+kurang tidur😪
+
+Proghive - Day 16
+
+🚀 WINS
+belajar authentication dan authorization
+belajar konsep token-based dan session-based
+
+
+⭐ CHALLENGES
+nyoba praktek login terus bikin session -> ngecek sessionnya valid -> bikin logout dengan delete session
+
+🔴 BLOCKERS
+suka panik kalo error, masih bingung alur identifikasi kesalahan

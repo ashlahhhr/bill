@@ -3,6 +3,14 @@ POST http://localhost:3000/api/v1/login
 Content-Type: application/json
 
 {
-    "email": "budut@email.com",
+    "email": "budi@email.com",
     "password": "12345"
 }
+
+###authorization 
+GET http://localhost:3000/api/v1/protected
+Authorization: Bearer cm10z4x8y0001gu74twjq5m5o
+
+###logout
+POST http://localhost:3000/api/v1/logout
+Authorization: Bearer cm10z4x8y0001gu74twjq5m5o

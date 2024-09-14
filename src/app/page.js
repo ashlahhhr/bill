@@ -20,14 +20,6 @@ async function getUsers() {
   }
 }
 
-//  {
-//    users.map((user) => (
-//      <div key={user.id}>
-//        <Link href={`/users/${user.id}`}>{user.username}</Link>
-//      </div>
-//    ));
-//  }
-
 export default async function Page() {
   const users = await getUsers();
 
