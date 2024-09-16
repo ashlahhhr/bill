@@ -1,6 +1,8 @@
 import { prisma } from "@/utils/prisma";
 import bcrypt from "bcrypt";
+import Cookies from "js-cookie";
 import jwt from "jsonwebtoken";
+import { Router } from "next/router";
 
 export async function POST(req) {
   const { email, password } = await req.json();

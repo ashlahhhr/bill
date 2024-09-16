@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { prisma } from "@/utils/prisma";
-import { redirect, RedirectType } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function Layout({ children }) {
   const cookieStore = cookies();
@@ -10,7 +10,7 @@ export default async function Layout({ children }) {
     return redirect("/login");
   }
 
-  const isSessionValid = await prisma.sesion.findUnique({
+  const isSessionValid = await prisma.session.findUnique({
     where: {
       id: sessionId,
     },
