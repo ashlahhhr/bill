@@ -34,7 +34,7 @@ export async function login(email, password) {
       maxAge: 30 * 24 * 60 * 60, // 30 days
       path: "/",
     });
-
+    console.log("sebelum return action login");
     return { success: true };
   } catch (error) {
     console.error("gabisa login boss", error);

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { login } from "@/app/login/action.login";
+import { login } from "@/action/login/action.login";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -16,8 +16,9 @@ export function LoginForm() {
     console.log("aaaaaaaaa");
     try {
       const result = await login(email, password);
-
+      console.log("abis bikin result setelah action login");
       if (result.success) {
+        console.log("kalo ini muncul berarti lanjut ke dashboard");
         router.push("/dashboard");
       } else {
         setError(result.error);
@@ -37,7 +38,6 @@ export function LoginForm() {
           required
           placeholder="email"
           value={email}
-          on
           onChange={(e) => setEmail(e.target.value)}
         />
         <input

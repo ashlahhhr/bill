@@ -1,6 +1,6 @@
 "use client";
 
-import { handleRegister } from "./action.register";
+import { handleRegister } from "../../action/register/action.register";
 import { useState } from "react";
 
 export default function Page() {
